@@ -120,14 +120,12 @@ To enhance the security of the system and ensure that only requests coming throu
 - In the Express Gateway configuration (`gateway.config.yml`), the proxy policies for both the `authPipeline` and `backendPipeline` include this header under `pipelines` -> service `policy`:
 ```yml
 headers:
-        x-gateway-auth: 'my-secret-token-123' 
+        x-gateway-auth: ${GATEWAY_AUTH_TOKEN}
 ```
 - Both `authService` and `backendService` verify this header before processing requests. This prevents direct access to these services, allowing only gateway-forwarded requests.
 
-**Important:**  
-  Keep the secret token confidential and consistent between the gateway and backend services. This approach aligns with best practices for securing microservices behind an API gateway and helps prevent unauthorized direct access.
-
-For more on securing API endpoints with custom headers and key authentication, see the [Express Gateway Key Authentication docs](https://www.express-gateway.io/implementing-key-auth/).
+- Environment Variable for `x-gateway-auth` Header:
+To securely manage the secret token used for the `x-gateway-auth` header between Express Gateway and your backend/auth services, this project uses an environment variable named `GATEWAY_AUTH_TOKEN`.
 ## References
 
 - [Express Gateway Documentation](https://www.express-gateway.io/docs/)
