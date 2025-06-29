@@ -31,6 +31,8 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: authService
+              headers:
+                x-gateway-auth: ${GATEWAY_AUTH_TOKEN} # Replace 'my-secret-token-123' with a strong secret string that only your gateway and backend know.
 
   backendPipeline:
     apiEndpoints:
@@ -43,3 +45,5 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: backendService
+              headers:
+                x-gateway-auth: ${GATEWAY_AUTH_TOKEN} # Replace 'my-secret-token-123' with a strong secret string that only your gateway and backend know.

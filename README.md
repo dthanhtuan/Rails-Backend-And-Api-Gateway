@@ -113,6 +113,21 @@ The **public key certificate** used by Express Gateway to verify JWT tokens is g
 **Important:**  
 Keep the private key secure and never expose it outside
 
+## Note on `x-gateway-auth` Header for Securing Backend and Auth Services
+
+To enhance the security of the system and ensure that only requests coming through the Express Gateway reach your backend and authentication services, the gateway adds a custom header `x-gateway-auth` with a secret token to all proxied requests.
+
+- In the Express Gateway configuration (`gateway.config.yml`), the proxy policies for both the `authPipeline` and `backendPipeline` include this header under `pipelines` -> service `policy`:
+```yml
+headers:
+        x-gateway-auth: 'my-secret-token-123' 
+```
+- Both `authService` and `backendService` verify this header before processing requests. This prevents direct access to these services, allowing only gateway-forwarded requests.
+
+**Important:**  
+  Keep the secret token confidential and consistent between the gateway and backend services. This approach aligns with best practices for securing microservices behind an API gateway and helps prevent unauthorized direct access.
+
+For more on securing API endpoints with custom headers and key authentication, see the [Express Gateway Key Authentication docs](https://www.express-gateway.io/implementing-key-auth/).
 ## References
 
 - [Express Gateway Documentation](https://www.express-gateway.io/docs/)
