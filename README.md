@@ -96,6 +96,9 @@ npm start
 
 curl -H "Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6MTc1MTIwMjUzNn0.R4a2vYWPz85LD0cnNXm5IoEp154g3JLclaLEPG78GZkqDkq4amNCILO74qLhy1HvU1xUyioNVufmxJrtjsfKsVf_LNgNnyzpdREYPiW2uF8--PULHLKfyl2YU41si0m9BEovB_FSkGXcVNA4ASi4w7bYKyJNu5RjK1Mq1wMaqETaqYm68yFjRMwXU9dRo20_Smg8BtLPFeX9pxd2j8V3T1rDLJncaRAHOBuSDXqjEwz_Kp29M7kjaVcHvddEMs5YAiCKO8FYyTPX9R_ZS01UboaeWMGtJD5tQ35eUWz91weQsSKAbdPAzJWvkJl95tYHqLONSruqy_JJYZHt20zyAw" http://localhost:8080/api/data
 {"message":"This is protected data","time":"2025-06-29T19:09:56.959+07:00"}
+
+curl -H "Authorization: Bearer INVALID_TOKEN" http://localhost:8080/api/data
+Unauthorized
 ```
 ---
 ## Certificate Management
