@@ -1,0 +1,45 @@
+http:
+  port: 8080
+
+apiEndpoints:
+  authApi:
+    host: localhost
+    paths:
+      - /auth/*
+
+  backendApi:
+    host: localhost
+    paths:
+      - /api/*
+
+serviceEndpoints:
+  authService:
+    url: 'http://localhost:3000'
+
+  backendService:
+    url: 'http://localhost:3001'
+
+policies:
+  - jwt
+  - proxy
+
+pipelines:
+  authPipeline:
+    apiEndpoints:
+      - authApi
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: authService
+
+  backendPipeline:
+    apiEndpoints:
+      - backendApi
+    policies:
+      - jwt:
+          - action:
+              secretOrPublicKeyFile: ./certs/public.pem
+              checkCredentialExistence: false
+      - proxy:
+          - action:
+              serviceEndpoint: backendService
