@@ -98,6 +98,17 @@ curl -H "Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6
 {"message":"This is protected data","time":"2025-06-29T19:09:56.959+07:00"}
 ```
 ---
+## Certificate Management
+
+The **public key certificate** used by Express Gateway to verify JWT tokens is generated and provided by the **Authentication Service** (`auth-service`). Specifically:
+
+- The `auth-service` generates an RSA key pair (private and public keys).
+- The **private key** is used by the `auth-service` to sign JWT tokens.
+- The **public key** (`jwt_public.pem`) is copied from the `auth-service` and placed into the Express Gateway’s `certs` directory (e.g., `./certs/public.pem`).
+- Express Gateway uses this public key to verify the authenticity and integrity of JWT tokens on protected routes.
+
+**Important:**  
+Keep the private key secure and never expose it outside
 
 ## References
 
