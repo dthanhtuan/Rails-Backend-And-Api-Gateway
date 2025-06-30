@@ -20,6 +20,7 @@ serviceEndpoints:
     url: 'http://localhost:3001'
 
 policies:
+  - logRequest
   - jwt
   - proxy
 
@@ -38,6 +39,9 @@ pipelines:
     apiEndpoints:
       - backendApi
     policies:
+      - logRequest:
+          - action:
+              messagePrefix: '[API Request] '
       - jwt:
           - action:
               secretOrPublicKeyFile: ./certs/public.pem

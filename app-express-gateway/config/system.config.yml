@@ -4,10 +4,6 @@ db:
     emulate: true
     namespace: EG
 
-# plugins:
-  # express-gateway-plugin-example:
-  #   param1: 'param from system.config' 
-
 crypto:
   cipherKey: sensitiveKey
   algorithm: aes256
@@ -24,3 +20,7 @@ refreshTokens:
   timeToExpiry: 7200000
 authorizationCodes:
   timeToExpiry: 300000
+
+plugins:
+  custom-log-request:
+    package: '../../../plugins/custom-log-request/manifest.js'
