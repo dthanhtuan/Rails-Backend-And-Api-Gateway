@@ -23,6 +23,7 @@ policies:
   - logRequest
   - jwt
   - proxy
+  - rate-limit # https://www.express-gateway.io/docs/policies/rate-limiter/
 
 pipelines:
   authPipeline:
@@ -42,6 +43,11 @@ pipelines:
       - logRequest:
           - action:
               messagePrefix: '[API Request] '
+      - rate-limit:
+          - action:
+              max: 4 # Maximum 4 requests per minute
+              windowMs: 60000
+              rateLimitBy: "${req.hostname}"
       - jwt:
           - action:
               secretOrPublicKeyFile: ./certs/public.pem
