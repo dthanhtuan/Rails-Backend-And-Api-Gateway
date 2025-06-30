@@ -119,7 +119,10 @@ headers:
 - Environment Variable for `x-gateway-auth` Header:
 To securely manage the secret token used for the `x-gateway-auth` header between Express Gateway and your backend/auth services, this project uses an environment variable named `GATEWAY_AUTH_TOKEN`.
 ## References
-
+- [Express Gateway Policies](https://www.express-gateway.io/docs/policies/)
+  - [JWT Policy](https://www.express-gateway.io/docs/policies/jwt/)
+  - [Proxy Policy](https://www.express-gateway.io/docs/policies/proxy/)
+  - [Cors Policy](https://www.express-gateway.io/docs/policies/cors/)
 - [Express Gateway Documentation](https://www.express-gateway.io/docs/)
 - [JWT Introduction](https://jwt.io/introduction/)
 - [Ruby JWT Gem](https://github.com/jwt/ruby-jwt)
