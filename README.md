@@ -72,29 +72,21 @@ flowchart LR
 ---
 
 ## How to Run Locally
-
-1. Start **auth-service** on port 3000
+1. Install Foreman:
 ```bash
-cd auth-service
-rails server -p 3000
+  npm install -g foreman
 ```
-2. Start **backend-service** on port 3001
+2. Run the application using Foreman:
 ```bash
-cd backend-service
-rails server -p 3001
+  foreman start
 ```
-3. Start **Express Gateway** on port 8080
-```bash
-cd my-gateway
-npm start
-```
-4. Use `curl` or Postman to test login and protected API access as described above.
+3. Use `curl` or Postman to test login and protected API access as described above.
 ```bash
  curl -X POST http://localhost:8080/auth/login -d "username=alice"
-{"token":"eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6MTc1MTIwMjUzNn0.R4a2vYWPz85LD0cnNXm5IoEp154g3JLclaLEPG78GZkqDkq4amNCILO74qLhy1HvU1xUyioNVufmxJrtjsfKsVf_LNgNnyzpdREYPiW2uF8--PULHLKfyl2YU41si0m9BEovB_FSkGXcVNA4ASi4w7bYKyJNu5RjK1Mq1wMaqETaqYm68yFjRMwXU9dRo20_Smg8BtLPFeX9pxd2j8V3T1rDLJncaRAHOBuSDXqjEwz_Kp29M7kjaVcHvddEMs5YAiCKO8FYyTPX9R_ZS01UboaeWMGtJD5tQ35eUWz91weQsSKAbdPAzJWvkJl95tYHqLONSruqy_JJYZHt20zyAw"}
+{"token":"eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6MTc1MTMwMDg0OH0.G2wwyYupPK4hXnNlV7D1418QTfGoucJJ5kXdHwX__fIDMEnMp9xGdAVjYVoDspckHtKr9nAWz3ScNt6wwfWguG6_1A0HfJxtRtIHM4a3tEuuAXewxx4dXhb0tc8Cw22gNsaYUkhkvzUjgMC8SQPqUoM-ZjIQ6TH4L1FgHlO_BMcnWfhMcA9fwog-_Ql8T2nQY2aJvCSQJFp0aAAZb03Ppjt9PV6DtAbZ8iDRxnYgBYa_nOU_H8yjFfBbgZrzOrUnMsjg6iKXm7_rEfxq9YgAtp6dDklsr818LrQAThz-y7cxAj6mYsW7Yie_tGaR9VbQOt326MYQrD5wVWLi_J84yw"}
 
 
-curl -H "Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6MTc1MTIwMjUzNn0.R4a2vYWPz85LD0cnNXm5IoEp154g3JLclaLEPG78GZkqDkq4amNCILO74qLhy1HvU1xUyioNVufmxJrtjsfKsVf_LNgNnyzpdREYPiW2uF8--PULHLKfyl2YU41si0m9BEovB_FSkGXcVNA4ASi4w7bYKyJNu5RjK1Mq1wMaqETaqYm68yFjRMwXU9dRo20_Smg8BtLPFeX9pxd2j8V3T1rDLJncaRAHOBuSDXqjEwz_Kp29M7kjaVcHvddEMs5YAiCKO8FYyTPX9R_ZS01UboaeWMGtJD5tQ35eUWz91weQsSKAbdPAzJWvkJl95tYHqLONSruqy_JJYZHt20zyAw" http://localhost:8080/api/data
+curl -H "Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6MTc1MTMwMDg0OH0.G2wwyYupPK4hXnNlV7D1418QTfGoucJJ5kXdHwX__fIDMEnMp9xGdAVjYVoDspckHtKr9nAWz3ScNt6wwfWguG6_1A0HfJxtRtIHM4a3tEuuAXewxx4dXhb0tc8Cw22gNsaYUkhkvzUjgMC8SQPqUoM-ZjIQ6TH4L1FgHlO_BMcnWfhMcA9fwog-_Ql8T2nQY2aJvCSQJFp0aAAZb03Ppjt9PV6DtAbZ8iDRxnYgBYa_nOU_H8yjFfBbgZrzOrUnMsjg6iKXm7_rEfxq9YgAtp6dDklsr818LrQAThz-y7cxAj6mYsW7Yie_tGaR9VbQOt326MYQrD5wVWLi_J84yw" http://localhost:8080/api/data
 {"message":"This is protected data","time":"2025-06-29T19:09:56.959+07:00"}
 
 curl -H "Authorization: Bearer INVALID_TOKEN" http://localhost:8080/api/data
